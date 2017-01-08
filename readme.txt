@@ -3,7 +3,7 @@ Contributors: buddydev,raviousprime,sbrajesh
 Tags: buddypress, featured members
 Requires at least: 4.3.0
 Tested up to: 4.7.0
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,11 +41,14 @@ For more details, Please see the plugin documentation page.
 == Screenshots ==
 
 1. Widget settings screenshot-1.png
-2. Featured Members list as slider screenshot-2.pn
+2. Featured Members list as slider screenshot-2.png
 
 For more screenshots, Please see [BuddyPress Featured Members Plugin](https://buddydev.com/plugins/bp-featured-members/) page.
 
 == Changelog ==
+
+= 1.0.1 =
+* Fix loading of translation files
 
 = 1.0.0 =
 * initial release

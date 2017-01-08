@@ -119,7 +119,7 @@ class BP_Featured_Members {
 	 * Load translations
 	 */
 	public function load_text_domain() {
-		load_plugin_textdomain( 'bp-featured-members', false, dirname( plugin_basename( __FILE__ ) ) . 'languages/' );
+		load_plugin_textdomain( 'bp-featured-members', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 
 	/**

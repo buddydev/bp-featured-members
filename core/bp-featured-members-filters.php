@@ -15,7 +15,7 @@ function bp_featured_members_filter_members_list( $args ) {
 	$args['meta_key'] = '_is_featured';
 	$args['meta_value'] = 1;
 
-	//which other parames are we allowing?
+	//which other params are we allowing?
 	$max = bp_featured_members()->get( 'max' );
 
 	if ( $max ) {

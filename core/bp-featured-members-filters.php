@@ -17,10 +17,15 @@ function bp_featured_members_filter_members_list( $args ) {
 
 	//which other params are we allowing?
 	$max = bp_featured_members()->get( 'max' );
+	$member_type = bp_featured_members()->get( 'member_type' );
 
 	if ( $max ) {
 		$args['per_page'] = absint( $max );
 		$args['max'] = absint( $max );
+	}
+
+	if ( $member_type ) {
+		$args['member_type'] = $member_type;
 	}
 
 	return $args;

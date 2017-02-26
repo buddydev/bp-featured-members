@@ -5,6 +5,7 @@ function bp_featured_members_shortcode( $atts, $content = '' ) {
 	$atts = shortcode_atts( array(
 		'view'               => 'list', //slider,default
 		'max'                => 5,
+        'member_type'        => '',
 		'slide-item'         => 1,
 		'slide-slideMargin'  => 0,
 		'slide-mode'         => 'slide',//fade
@@ -21,7 +22,7 @@ function bp_featured_members_shortcode( $atts, $content = '' ) {
 	bp_featured_members()->set( 'max', $max );
 	bp_featured_members()->set( 'view', $view );
 	bp_featured_members()->set( 'context', 'shortcode' );
-
+	bp_featured_members()->set( 'member_type', isset( $atts['member_type'] ) ? $atts['member_type'] : '' );
 	unset( $atts['max'] );
 	unset( $atts['view'] );
 

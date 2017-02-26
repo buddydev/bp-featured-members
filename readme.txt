@@ -3,7 +3,7 @@ Contributors: buddydev,raviousprime,sbrajesh
 Tags: buddypress, featured members
 Requires at least: 4.3.0
 Tested up to: 4.7.2
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -47,7 +47,7 @@ For more screenshots, Please see [BuddyPress Featured Members Plugin](https://bu
 
 == Changelog ==
 
-= 1.0.1 =
+= 1.0.2 =
 * Allow filtering by BuddyPress member types
 * Fix loading of translation files
 

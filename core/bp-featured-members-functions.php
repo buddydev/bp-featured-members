@@ -1,5 +1,5 @@
 <?php
-// exit if file access directly
+// Exit if file access directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -19,21 +19,35 @@ function bp_fm_get_views_options() {
 	return $options;
 }
 
+/**
+ * Print slider data attributes.
+ *
+ * @param array $settings array of atts.
+ */
 function bp_members_slider_data_attributes( $settings = array() ) {
 	foreach ( $settings as $key => $val ) {
 		echo "data-$key='" . esc_attr( $val ) . "' ";
 	}
 }
 
+/**
+ * Load featured members list.
+ *
+ * @param string $view_type selected view type.
+ * @param string $context widget/shortcode etc.
+ * @param bool   $load load or return.
+ *
+ * @return mixed|string|void
+ */
 function bp_fm_load_members_list( $view_type, $context = 'widget', $load = true ) {
 
 	if ( ! in_array( $view_type, array( 'default', 'list', 'slider' ) ) ) {
-		$view_type = 'list';//fallback to list if invalid view type
+		$view_type = 'list';// fallback to list if invalid view type.
 	}
 
-	//in case of default view type, we load it from theme
+	// in case of default view type, we load it from theme.
 	if ( $view_type == 'default' ) {
-		$located = bp_locate_template( array( 'members/members-loop.php' ) , false, false);
+		$located = bp_locate_template( array( 'members/members-loop.php' ), false, false );
 	} else {
 
 		$templates = array(

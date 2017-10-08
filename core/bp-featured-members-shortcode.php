@@ -1,21 +1,27 @@
 <?php
 add_shortcode( 'bp-featured-members', 'bp_featured_members_shortcode' );
-
+/**
+ * Featured member as shortcde.
+ *
+ * @param array  $atts shortcode atts.
+ * @param string $content content.
+ *
+ * @return string
+ */
 function bp_featured_members_shortcode( $atts, $content = '' ) {
 	$atts = shortcode_atts( array(
-		'view'               => 'list', //slider,default
+		'view'               => 'list', // list, slider, default.
 		'max'                => 5,
-        'member_type'        => '',
+		'member_type'        => '',
 		'slide-item'         => 1,
 		'slide-slideMargin'  => 0,
-		'slide-mode'         => 'slide',//fade
+		'slide-mode'         => 'slide',// slide, fade.
 		'slide-speed'        => 400,
 		'slide-auto'         => true,
 		'slide-pauseOnHover' => false,
 		'slide-controls'     => false,
 		'slide-loop'         => true,
 	), $atts );
-
 
 	$max  = $atts['max'];
 	$view = $atts['view'];
@@ -34,7 +40,7 @@ function bp_featured_members_shortcode( $atts, $content = '' ) {
 
 	bp_featured_members()->set( 'slider-settings', $new_settings );
 
-	//log loop start
+	// log loop start.
 	bp_featured_members()->start_loop();
 	ob_start();
 	?>
@@ -43,7 +49,7 @@ function bp_featured_members_shortcode( $atts, $content = '' ) {
 		<?php bp_fm_load_members_list( $view, 'shortcode' ); ?>
 	</div>
 	<?php
-	bp_featured_members()->end_loop();//mark loop end
+	bp_featured_members()->end_loop();// mark loop end.
 	$content = ob_get_clean();
 	return $content;
 }

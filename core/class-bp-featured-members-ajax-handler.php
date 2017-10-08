@@ -1,16 +1,21 @@
 <?php
-
-// exit if file access directly
+// Exit if file access directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Ajax action handler.
+ */
 class BP_Featured_Members_Ajax_Action_Handler {
 
 	public function __construct() {
 		add_action( 'wp_ajax_bp_process_featured_members_status', array( $this, 'handle' ) );
 	}
 
+	/**
+	 * Handle marking/removing as featured member.
+	 */
 	public function handle() {
 
 		$user_id = isset( $_POST['user_id'] ) ? absint( $_POST['user_id'] ) : 0;

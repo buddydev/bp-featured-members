@@ -21,7 +21,7 @@ jQuery(document).ready(function(){
         return false;
     });
 
-    //for slider
+    // for slider.
     if ( typeof jq.fn.lightSlider !== 'undefined' ) {
         jq( '.featured-members-slider').each( function() {
           var $this = jq(this);

@@ -1,31 +1,33 @@
 <?php
+// exit if file access directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
+/**
+ * Template helper.
+ */
 class BP_Featured_Members_Template_Helper {
 
+	/**
+	 * Setup actions.
+	 */
 	public function setup() {
 
-		//buttons
+		// buttons.
 		add_action( 'bp_directory_members_actions', array( $this, 'add_member_list_button' ) );
 		add_action( 'bp_group_members_list_item_action', array( $this, 'add_member_list_button' ) );
 		add_action( 'bp_member_header_actions', array( $this, 'add_member_header_button' ) );
-		//add to members directory?
+		// add to members directory?
 		add_action( 'bp_members_directory_member_types', array( $this, 'directory_tab' ) );
 	}
 
 	/**
 	 * Generate the button for the given member
 	 *
-	 * @param int $member_id user id
+	 * @param int $member_id user id.
 	 */
 	public function generate_button( $member_id ) {
-
-		//$user_id = bp_loggedin_user_id();
-
-		// button will not show for logged-in user in loop
-		//or should the admin be able to set his profile as featured?
-		//if ( $user_id == $member_id ) {
-		//	return '';
-		//}
 
 		$is_featured = get_user_meta( $member_id, '_is_featured', true );
 
@@ -41,8 +43,13 @@ class BP_Featured_Members_Template_Helper {
 		<?php
 	}
 
+	/**
+	 * Add button on single user page(in member header).
+	 *
+	 * @return string
+	 */
 	public function add_member_header_button() {
-		//checking authentication
+		// checking authentication.
 		if ( ! bp_featured_members()->current_user_can_toggle_member_status() ) {
 			return '';
 		}
@@ -50,15 +57,15 @@ class BP_Featured_Members_Template_Helper {
 		$this->generate_button( bp_displayed_user_id() );
 	}
 
-	/*
-	 * add button to mark user as featured or un-featured.
+	/**
+	 * Add button to mark user as featured or un-featured.
 	 * return if user is not able to mark user as featured or un-featured
 	 *
 	 * @return string
 	 */
 	public function add_member_list_button() {
 
-		//checking authentication
+		// checking permission.
 		if ( ! bp_featured_members()->current_user_can_toggle_member_status() ) {
 			return '';
 		}
@@ -66,6 +73,9 @@ class BP_Featured_Members_Template_Helper {
 		$this->generate_button( bp_get_member_user_id() );
 	}
 
+	/**
+	 * Add featured tab on members directory.
+	 */
 	public function directory_tab() {
 
 		if ( ! apply_filters( 'bp_featured_members_display_directory_tab', true ) ) {

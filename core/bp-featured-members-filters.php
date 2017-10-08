@@ -2,13 +2,13 @@
 /**
  * Filter bp_has_members() transparently for listing our members
  *
- * @param $args
+ * @param array $args args array.
  *
  * @return mixed
  */
 function bp_featured_members_filter_members_list( $args ) {
 	// our scope must be featured.
-	if (  bp_featured_members()->in_the_loop() || ( isset( $args['scope'] ) && $args['scope'] == 'featured' ) ) {
+	if ( bp_featured_members()->in_the_loop() || ( isset( $args['scope'] ) && $args['scope'] == 'featured' ) ) {
 
 		$args['meta_key']   = '_is_featured';
 		$args['meta_value'] = 1;
@@ -26,6 +26,7 @@ function bp_featured_members_filter_members_list( $args ) {
 			$args['member_type'] = $member_type;
 		}
 	}
+
 	return $args;
 }
 

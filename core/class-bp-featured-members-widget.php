@@ -1,11 +1,12 @@
 <?php
-
-// exit if file access directly
+// Exit if file access directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// BP_Featured_Members_List_Widget widget
+/**
+ * BP_Featured_Members_List_Widget widget
+ */
 class BP_Featured_Members_List_Widget extends WP_Widget {
 
 	public function __construct( $name = '', $widget_options = array() ) {
@@ -17,6 +18,12 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 		parent::__construct( false, $name, $widget_options );
 	}
 
+	/**
+	 * Display widget content.
+	 *
+	 * @param array $args widget args.
+	 * @param array $instance current widget instance.
+	 */
 	public function widget( $args, $instance ) {
 
 		bp_featured_members()->set( 'max', $instance['max'] );
@@ -27,7 +34,7 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 		$slider_settings = array(
 			'item'         => 1,
 			'slideMargin'  => 0,
-			'mode'         => 'slide',//fade
+			'mode'         => 'slide',// slide.
 			'speed'        => 400,
 			'auto'         => true,
 			'pauseOnHover' => false,
@@ -37,7 +44,7 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 
 		bp_featured_members()->set( 'slider-settings', $slider_settings );
 
-		//log loop start
+		// log loop start.
 		bp_featured_members()->start_loop();
 
 		echo $args['before_widget'];
@@ -53,9 +60,17 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 		<?php echo $args['after_widget']; ?>
 
 		<?php
-		bp_featured_members()->end_loop();//mark loop end
+		bp_featured_members()->end_loop();// mark loop end.
 	}
 
+	/**
+	 * Update widget settings.
+	 *
+	 * @param array $new_instance new widget settings.
+	 * @param array $old_instance old widget settings.
+	 *
+	 * @return array
+	 */
 	public function update( $new_instance, $old_instance ) {
 
 		$view_options      = bp_fm_get_views_options();
@@ -64,18 +79,24 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['max']   = strip_tags( $new_instance['max'] );
 		$instance['view']  = $view;
-		$instance['member_type']  = isset( $new_instance['member_type'] ) ? $new_instance['member_type'] : '' ;//not validating as admins are not supposed to be fooling around
+		// not validating as admins are not supposed to be fooling around.
+		$instance['member_type']  = isset( $new_instance['member_type'] ) ? $new_instance['member_type'] : '' ;
 
 		return $instance;
 	}
 
+	/**
+	 * Display widget settings form.
+	 *
+	 * @param Object $instance widget instance.
+	 */
 	public function form( $instance ) {
 
 		$defaults = array(
-			'title'         => __( 'Featured Members', 'bp-featured-members' ),
-			'max'           => 5,
-			'view'          => 'list',
-            'member_type'   => '',
+			'title'       => __( 'Featured Members', 'bp-featured-members' ),
+			'max'         => 5,
+			'view'        => 'list',
+			'member_type' => '',
 		);
 
 		$instance     = wp_parse_args( (array) $instance, $defaults );

@@ -6,7 +6,6 @@
  * Author: BuddyDev
  * Author URI: https://buddydev.com
  * Version: 1.0.2
- *
  */
 
 /**
@@ -15,7 +14,7 @@
  *  - Brajesh Singh
  */
 
-// exit if file access directly
+// exit if file access directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -25,19 +24,31 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class BP_Featured_Members {
 
-	private $data = array();
 	/**
-	 * @var null This variable make sure only one instance of this class is there in memory
+	 * Singleton instance.
+	 *
+	 * @var null
 	 */
 	private static $instance = null;
 
 	/**
-	 * @var string absolute path of plugin directory
+	 * Data array for storing arbitrary data.
+	 *
+	 * @var array
+	 */
+	private $data = array();
+
+	/**
+	 * Absolute path of plugin directory
+	 *
+	 * @var string
 	 */
 	private $path;
 
 	/**
-	 * @var string absolute url of this plugin's directory
+	 * Absolute url of this plugin's directory
+	 *
+	 * @var string
 	 */
 	private $url;
 
@@ -45,7 +56,7 @@ class BP_Featured_Members {
 	 * BP_Featured_Members constructor.
 	 */
 	private function __construct() {
-		// initializing the class variables
+		// initializing the class variables.
 		$this->path = plugin_dir_path( __FILE__ );
 		$this->url  = plugin_dir_url( __FILE__ );
 
@@ -72,7 +83,7 @@ class BP_Featured_Members {
 	private function setup() {
 		add_action( 'bp_loaded', array( $this, 'load' ) );
 		add_action( 'bp_init', array( $this, 'load_text_domain' ) );
-		//css/js
+		// css/js.
 		add_action( 'bp_enqueue_scripts', array( $this, 'load_assets' ) );
 	}
 
@@ -110,6 +121,9 @@ class BP_Featured_Members {
 		wp_enqueue_script( 'bp-featured-members' );
 	}
 
+	/**
+	 * Enqueue slider assets.
+	 */
 	public function load_slider() {
 		wp_enqueue_style( 'lightslider' );
 		wp_enqueue_script( 'lightslider' );
@@ -159,14 +173,16 @@ class BP_Featured_Members {
 	}
 
 	/**
-	 * @param $user_id
+	 * Add user to featured members list.
+	 *
+	 * @param int $user_id user id.
 	 *
 	 * @return bool|int meta id or true/false on update/failure
 	 */
 	public function add_user( $user_id ) {
 		$done = update_user_meta( $user_id, '_is_featured', 1 );
 
-		//is it an add?
+		// is it an add?
 		if ( is_numeric( $done ) ) {
 			$this->update_count( 1 );
 		}
@@ -179,7 +195,7 @@ class BP_Featured_Members {
 	/**
 	 * Remove the user from the featured users list
 	 *
-	 * @param $user_id
+	 * @param int $user_id user id.
 	 *
 	 * @return boolean
 	 */
@@ -197,7 +213,7 @@ class BP_Featured_Members {
 	/**
 	 * Keep track of the count of featured members
 	 *
-	 * @param int $by
+	 * @param int $by how many.
 	 */
 	private function update_count( $by = 1 ) {
 
@@ -223,7 +239,7 @@ class BP_Featured_Members {
 	/**
 	 * Is the given user featured?
 	 *
-	 * @param $user_id
+	 * @param int $user_id user id.
 	 *
 	 * @return bool true if featured else false
 	 */
@@ -234,7 +250,7 @@ class BP_Featured_Members {
 	/**
 	 * Toggle the entry of a user in  feaured members list
 	 *
-	 * @param $user_id int
+	 * @param int $user_id user id.
 	 *
 	 * @return bool true this operation never fails
 	 */
@@ -260,21 +276,20 @@ class BP_Featured_Members {
 	 * Mark the ending of featured members loop
 	 */
 	public function end_loop() {
-		//$this->delete( 'loop' );
-		$this->data = array();//unset all data
+		$this->data = array(); // unset all data.
 	}
 
 	/**
 	 * Save loop args
 	 *
-	 * @param $args
+	 * @param mixed $args data to save.
 	 */
 	public function save_args( $args ) {
 		$this->set( 'args', $args );
 	}
 
 	/**
-	 * get current loop args
+	 * Get current loop args
 	 *
 	 * @return mixed|string
 	 */
@@ -294,15 +309,17 @@ class BP_Featured_Members {
 	/**
 	 * Save some data
 	 *
-	 * @param $key string unique key
-	 * @param $val mixed value associated
+	 * @param string $key unique key.
+	 * @param mixed  $val value associated.
 	 */
 	public function set( $key, $val ) {
 		$this->data[ $key ] = $val;
 	}
 
 	/**
-	 * @param $key
+	 * Get the stored data.
+	 *
+	 * @param string $key unique key.
 	 *
 	 * @return mixed|string
 	 */
@@ -318,7 +335,7 @@ class BP_Featured_Members {
 	/**
 	 * Delete the data by given key
 	 *
-	 * @param $key
+	 * @param string $key unique key.
 	 */
 	public function delete( $key ) {
 		unset( $this->data[ $key ] );
@@ -327,7 +344,7 @@ class BP_Featured_Members {
 	/**
 	 * Check if data exists for the given key
 	 *
-	 * @param $key
+	 * @param string $key unique key.
 	 *
 	 * @return bool
 	 */
@@ -337,11 +354,13 @@ class BP_Featured_Members {
 }
 
 /**
+ * Helper function to access the singleton instance.
+ *
  * @return BP_Featured_Members
  */
 function bp_featured_members() {
 	return BP_Featured_Members::get_instance();
 }
 
-//initialize
+// initialize.
 bp_featured_members();

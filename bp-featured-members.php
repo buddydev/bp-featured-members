@@ -5,7 +5,7 @@
  * Plugin URI: https://buddydev.com/plugins/bp-featured-members/
  * Author: BuddyDev
  * Author URI: https://buddydev.com
- * Version: 1.0.2
+ * Version: 1.0.3
  */
 
 /**
@@ -27,7 +27,7 @@ class BP_Featured_Members {
 	/**
 	 * Singleton instance.
 	 *
-	 * @var null
+	 * @var BP_Featured_Members
 	 */
 	private static $instance = null;
 

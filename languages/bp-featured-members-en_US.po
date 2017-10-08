@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BuddyPress Featured Members\n"
-"POT-Creation-Date: 2017-02-27 01:27+0530\n"
-"PO-Revision-Date: 2017-02-27 01:27+0530\n"
+"POT-Creation-Date: 2017-10-08 17:43+0530\n"
+"PO-Revision-Date: 2017-10-08 17:43+0530\n"
 "Last-Translator: BuddyDev.com\n"
 "Language-Team: BuddyDev\n"
 "Language: en_US\n"
@@ -26,47 +26,47 @@ msgstr ""
 msgid "Theme Default"
 msgstr ""
 
-#: ../core/class-bp-featured-members-ajax-handler.php:21
+#: ../core/class-bp-featured-members-ajax-handler.php:26
 msgid "You don't have permission"
 msgstr ""
 
-#: ../core/class-bp-featured-members-ajax-handler.php:28
+#: ../core/class-bp-featured-members-ajax-handler.php:33
 msgid "Set Featured"
 msgstr ""
 
-#: ../core/class-bp-featured-members-ajax-handler.php:31
+#: ../core/class-bp-featured-members-ajax-handler.php:36
 msgid "Remove Featured"
 msgstr ""
 
-#: ../core/class-bp-featured-members-widget.php:14
+#: ../core/class-bp-featured-members-widget.php:15
 msgid "BuddyPress Featured Members"
 msgstr ""
 
-#: ../core/class-bp-featured-members-widget.php:75
+#: ../core/class-bp-featured-members-widget.php:96
 msgid "Featured Members"
 msgstr ""
 
-#: ../core/class-bp-featured-members-widget.php:93
+#: ../core/class-bp-featured-members-widget.php:114
 msgid "Title:"
 msgstr ""
 
-#: ../core/class-bp-featured-members-widget.php:102
+#: ../core/class-bp-featured-members-widget.php:123
 msgid "Max. number of users to show:"
 msgstr ""
 
-#: ../core/class-bp-featured-members-widget.php:110
+#: ../core/class-bp-featured-members-widget.php:131
 msgid "Filter by Member Type"
 msgstr ""
 
-#: ../core/class-bp-featured-members-widget.php:112
+#: ../core/class-bp-featured-members-widget.php:133
 msgid "N/A"
 msgstr ""
 
-#: ../core/class-bp-featured-members-widget.php:124
+#: ../core/class-bp-featured-members-widget.php:145
 msgid "Display View:"
 msgstr ""
 
-#: ../core/class-featured-members-template-helper.php:76
+#: ../core/class-featured-members-template-helper.php:86
 #, php-format
 msgid "Featured Members %s"
 msgstr ""

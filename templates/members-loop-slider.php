@@ -2,8 +2,8 @@
 /**
  * Members list Slider template
  */
-$view = bp_featured_members()->get('view');
-$settings = bp_featured_members()->get('slider-settings');
+$view = bp_featured_members()->get( 'view' );
+$settings = bp_featured_members()->get( 'slider-settings' );
 ?>
 <?php if ( bp_has_members( bp_ajax_querystring( 'members' ) . '&scope=featured') ) : ?>
 <ul class="item-list featured-members-list featured-members-<?php echo $view; ?>" <?php bp_members_slider_data_attributes( $settings );?>">
@@ -12,7 +12,7 @@ $settings = bp_featured_members()->get('slider-settings');
 	<li class="featured-member-item ">
 		<div class="item-avatar">
 			<a href="<?php bp_member_permalink() ?>" title="<?php bp_member_name(); ?>">
-				<?php bp_member_avatar(); ?>
+				<?php bp_member_avatar( bp_fm_get_avatar_args() ); ?>
 			</a>
 		</div>
 		<div class="item">

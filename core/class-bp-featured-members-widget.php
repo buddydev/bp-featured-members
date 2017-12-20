@@ -27,6 +27,7 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 	public function widget( $args, $instance ) {
 
 		bp_featured_members()->set( 'max', $instance['max'] );
+		bp_featured_members()->set( 'size', $instance['size'] );
 		bp_featured_members()->set( 'view', $instance['view'] );
 		bp_featured_members()->set( 'context', 'widget' );
 		bp_featured_members()->set( 'member_type', isset( $instance['member_type'] ) ? $instance['member_type'] : '' );
@@ -34,7 +35,7 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 		$slider_settings = array(
 			'item'         => 1,
 			'slideMargin'  => 0,
-			'mode'         => 'slide',// slide.
+			'mode'         => 'slide', // slide.
 			'speed'        => 400,
 			'auto'         => true,
 			'pauseOnHover' => false,
@@ -43,6 +44,12 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 		);
 
 		bp_featured_members()->set( 'slider-settings', $slider_settings );
+
+		if ( $instance['size'] > BP_AVATAR_THUMB_WIDTH ) {
+			bp_featured_members()->set( 'avatar_type', 'full' );
+		} else {
+			bp_featured_members()->set( 'avatar_type', 'thumb' );
+		}
 
 		// log loop start.
 		bp_featured_members()->start_loop();
@@ -78,9 +85,10 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 		$instance          = $old_instance;
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['max']   = strip_tags( $new_instance['max'] );
+		$instance['size']  = strip_tags( $new_instance['size'] );
 		$instance['view']  = $view;
 		// not validating as admins are not supposed to be fooling around.
-		$instance['member_type']  = isset( $new_instance['member_type'] ) ? $new_instance['member_type'] : '' ;
+		$instance['member_type'] = isset( $new_instance['member_type'] ) ? $new_instance['member_type'] : '';
 
 		return $instance;
 	}
@@ -89,12 +97,15 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 	 * Display widget settings form.
 	 *
 	 * @param Object $instance widget instance.
+	 *
+	 * @return string
 	 */
 	public function form( $instance ) {
 
 		$defaults = array(
 			'title'       => __( 'Featured Members', 'bp-featured-members' ),
 			'max'         => 5,
+			'size'        => '',
 			'view'        => 'list',
 			'member_type' => '',
 		);
@@ -102,6 +113,7 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 		$instance     = wp_parse_args( (array) $instance, $defaults );
 		$title        = strip_tags( $instance['title'] );
 		$max          = strip_tags( $instance['max'] );
+		$size         = strip_tags( $instance['size'] );
 		$view         = $instance['view'];
 		$member_type  = $instance['member_type'];
 		$view_options = bp_fm_get_views_options();
@@ -124,6 +136,13 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 				<input id="<?php echo $this->get_field_id( 'max' ); ?>" name="<?php echo $this->get_field_name( 'max' ); ?>" type="text" value="<?php echo esc_attr( $max ); ?>" />
 			</label>
 		</p>
+
+        <p>
+            <label>
+				<?php _e( 'Avatar size:', 'bp-featured-members' ); ?>
+                <input id="<?php echo $this->get_field_id( 'size' ); ?>" name="<?php echo $this->get_field_name( 'size' ); ?>" type="text" value="<?php echo esc_attr( $size ); ?>" />
+            </label>
+        </p>
 
         <?php if ( ! empty( $member_types ) ) : ?>
             <p>

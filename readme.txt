@@ -3,7 +3,7 @@ Contributors: buddydev,raviousprime,sbrajesh
 Tags: buddypress, featured members
 Requires at least: 4.5.0
 Tested up to: 4.8.2
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,6 +46,9 @@ For more details, Please see the plugin documentation page.
 For more screenshots, Please see [BuddyPress Featured Members Plugin](https://buddydev.com/plugins/bp-featured-members/) page.
 
 == Changelog ==
+
+= 1.0.5 =
+* Rename size attribute to avatar size so that more understandable
 
 = 1.0.4 =
 * Add avatar size support in widget and shortcodes

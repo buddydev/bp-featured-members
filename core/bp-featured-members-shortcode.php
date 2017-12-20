@@ -12,7 +12,7 @@ function bp_featured_members_shortcode( $atts, $content = '' ) {
 	$atts = shortcode_atts( array(
 		'view'               => 'list', // list, slider, default.
 		'max'                => 5,
-		'size'               => '',
+		'avatar_size'        => '',
 		'member_type'        => '',
 		'slide-item'         => 1,
 		'slide-slideMargin'  => 0,
@@ -25,13 +25,15 @@ function bp_featured_members_shortcode( $atts, $content = '' ) {
 	), $atts );
 
 	$max  = $atts['max'];
-	$size = $atts['size'];
+	$avatar_size = $atts['avatar_size'];
 	$view = $atts['view'];
+
 	bp_featured_members()->set( 'max', $max );
-	bp_featured_members()->set( 'size', $size );
+	bp_featured_members()->set( 'avatar_size', $avatar_size );
 	bp_featured_members()->set( 'view', $view );
 	bp_featured_members()->set( 'context', 'shortcode' );
 	bp_featured_members()->set( 'member_type', isset( $atts['member_type'] ) ? $atts['member_type'] : '' );
+
 	unset( $atts['max'] );
 	unset( $atts['view'] );
 
@@ -43,7 +45,7 @@ function bp_featured_members_shortcode( $atts, $content = '' ) {
 
 	bp_featured_members()->set( 'slider-settings', $new_settings );
 
-	if ( $size > BP_AVATAR_THUMB_WIDTH ) {
+	if ( $avatar_size > BP_AVATAR_THUMB_WIDTH ) {
 		bp_featured_members()->set( 'avatar_type', 'full' );
 	} else {
 		bp_featured_members()->set( 'avatar_type', 'thumb' );

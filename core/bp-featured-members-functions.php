@@ -79,18 +79,12 @@ function bp_fm_load_members_list( $view_type, $context = 'widget', $load = true 
  */
 function bp_fm_get_avatar_args() {
 
-	$args = array();
-
-	$size = bp_featured_members()->get( 'size' );
+	$avatar_size = bp_featured_members()->get( 'avatar_size' );
 	$avatar_type = bp_featured_members()->get( 'avatar_type' );
 
-	if ( 'full' == $avatar_type ) {
-		$args['type'] = $avatar_type;
-		$args['width'] = $size;
-		$args['height'] = $size;
-	} else {
-		$args['type'] = $avatar_type;
-	}
-
-	return $args;
+	return array(
+		'type' => $avatar_type,
+		'width' => $avatar_size,
+		'height' => $avatar_size,
+	);
 }

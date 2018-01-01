@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: BuddyPress Featured Members\n"
-"POT-Creation-Date: 2017-10-08 17:43+0530\n"
-"PO-Revision-Date: 2017-10-08 17:43+0530\n"
+"POT-Creation-Date: 2018-01-01 08:27+0530\n"
+"PO-Revision-Date: 2018-01-01 08:27+0530\n"
 "Last-Translator: BuddyDev.com\n"
 "Language-Team: BuddyDev\n"
 "Language: en_US\n"
@@ -38,31 +38,35 @@ msgstr ""
 msgid "Remove Featured"
 msgstr ""
 
-#: ../core/class-bp-featured-members-widget.php:15
+#: ../core/class-bp-featured-members-widget.php:27
 msgid "BuddyPress Featured Members"
 msgstr ""
 
-#: ../core/class-bp-featured-members-widget.php:96
+#: ../core/class-bp-featured-members-widget.php:124
 msgid "Featured Members"
 msgstr ""
 
-#: ../core/class-bp-featured-members-widget.php:114
+#: ../core/class-bp-featured-members-widget.php:143
 msgid "Title:"
 msgstr ""
 
-#: ../core/class-bp-featured-members-widget.php:123
+#: ../core/class-bp-featured-members-widget.php:152
 msgid "Max. number of users to show:"
 msgstr ""
 
-#: ../core/class-bp-featured-members-widget.php:131
+#: ../core/class-bp-featured-members-widget.php:159
+msgid "Avatar size:"
+msgstr ""
+
+#: ../core/class-bp-featured-members-widget.php:167
 msgid "Filter by Member Type"
 msgstr ""
 
-#: ../core/class-bp-featured-members-widget.php:133
+#: ../core/class-bp-featured-members-widget.php:169
 msgid "N/A"
 msgstr ""
 
-#: ../core/class-bp-featured-members-widget.php:145
+#: ../core/class-bp-featured-members-widget.php:181
 msgid "Display View:"
 msgstr ""
 

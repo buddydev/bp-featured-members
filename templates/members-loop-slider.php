@@ -11,13 +11,13 @@ $settings = bp_featured_members()->get( 'slider-settings' );
 <?php while ( bp_members() ) : bp_the_member(); ?>
 	<li class="featured-member-item ">
 		<div class="item-avatar">
-			<a href="<?php bp_member_permalink() ?>" title="<?php bp_member_name(); ?>">
+			<a href="<?php bp_member_permalink() ?>" title="<?php echo esc_attr( bp_get_member_name() ); ?>">
 				<?php bp_member_avatar( bp_fm_get_avatar_args() ); ?>
 			</a>
 		</div>
 		<div class="item">
 			<div class="item-title">
-				<a href="<?php bp_member_permalink(); ?>" title="<?php bp_member_name(); ?>">
+				<a href="<?php bp_member_permalink(); ?>" title="<?php echo esc_attr( bp_get_member_name() ); ?>">
 					<?php bp_member_name(); ?>
 				</a>
 			</div>
@@ -31,10 +31,11 @@ $settings = bp_featured_members()->get( 'slider-settings' );
 <?php endwhile; ?>
 </ul>
 <?php bp_featured_members()->load_slider(); ?>
-<?php else: ?>
+<?php else : ?>
 
 	<div id="message" class="info">
 		<p><?php _e( 'Sorry, no members were found.', 'bp-featured-members' ); ?></p>
 	</div>
 
 <?php endif; ?>
+

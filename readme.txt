@@ -2,7 +2,7 @@
 Contributors: buddydev,raviousprime,sbrajesh
 Tags: buddypress, featured members
 Requires at least: 4.5.0
-Tested up to: 4.8.2
+Tested up to: 4.9.1
 Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -27,6 +27,8 @@ Features:-
 For documentation, Please see the [plugin page]( https://buddydev.com/plugins/bp-featured-members/ ).
 
 **For Support**, Please use [BuddyDev Support Forums](https://buddydev.com/support/forums/ ).
+
+Are you looking for more features for your BuddyPress site. We have got a lot of [BuddyPress plugins](https://buddydev.com/plugins/) that you may find helpful.
 
 == Installation ==
 

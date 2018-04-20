@@ -2,8 +2,8 @@
 Contributors: buddydev,raviousprime,sbrajesh
 Tags: buddypress, featured members
 Requires at least: 4.5.0
-Tested up to: 4.9.1
-Stable tag: 1.0.6
+Tested up to: 4.9.5
+Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,13 @@ For more details, Please see the plugin documentation page.
 For more screenshots, Please see [BuddyPress Featured Members Plugin](https://buddydev.com/plugins/bp-featured-members/) page.
 
 == Changelog ==
+
+
+= 1.0.6 =
+* Renaming localization file to make it work with wp.org translation.
+
+= 1.0.6 =
+* sanitization
 
 = 1.0.5 =
 * Rename size attribute to avatar size so that more understandable

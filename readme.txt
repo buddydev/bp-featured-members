@@ -3,7 +3,7 @@ Contributors: buddydev,raviousprime,sbrajesh
 Tags: buddypress, featured members
 Requires at least: 4.5.0
 Tested up to: 4.9.5
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,7 +50,10 @@ For more screenshots, Please see [BuddyPress Featured Members Plugin](https://bu
 == Changelog ==
 
 
-= 1.0.6 =
+= 1.0.8 =
+* Add the missing language header in plugin.
+
+= 1.0.7 =
 * Renaming localization file to make it work with wp.org translation.
 
 = 1.0.6 =

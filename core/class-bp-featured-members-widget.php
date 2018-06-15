@@ -47,15 +47,20 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 		bp_featured_members()->set( 'context', 'widget' );
 		bp_featured_members()->set( 'member_type', $member_type );
 
+		$slide_auto           = ( $instance['slide_auto'] ) ? true : false;
+		$slide_pause_on_hover = ( $instance['slide_pauseOnHover'] ) ? true : false;
+		$slide_controls       = ( $instance['slide_controls'] ) ? true : false;
+		$slide_loop           = ( $instance['slide_loop'] ) ? true : false;
+
 		$slider_settings = array(
-			'item'         => 1,
-			'slideMargin'  => 0,
-			'mode'         => 'slide', // slide.
-			'speed'        => 400,
-			'auto'         => true,
-			'pauseOnHover' => false,
-			'controls'     => false,
-			'loop'         => true,
+			'item'           => $instance['slide_item'],
+			'slide-margin'   => $instance['slide_slideMargin'],
+			'mode'           => $instance['slide_mode'], // slide.
+			'speed'          => $instance['slide_speed'],
+			'auto'           => $slide_auto,
+			'pause-on-hover' => $slide_pause_on_hover,
+			'controls'       => $slide_controls,
+			'loop'           => $slide_loop,
 		);
 
 		bp_featured_members()->set( 'slider-settings', $slider_settings );
@@ -106,7 +111,15 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 		$instance['avatar_size'] = $avatar_size;
 		$instance['view']        = $view;
 		// not validating as admins are not supposed to be fooling around.
-		$instance['member_type'] = $member_type;
+		$instance['member_type']       = $member_type;
+		$instance['slide_item']        = strip_tags( $new_instance['slide_item'] );
+		$instance['slide_slideMargin'] = strip_tags( $new_instance['slide_slideMargin'] );
+		$instance['slide_mode']        = $new_instance['slide_mode']; // slide, fade.
+		$instance['slide_speed']       = strip_tags( $new_instance['slide_speed'] );
+		$instance['slide_auto']         = $new_instance['slide_auto'];
+		$instance['slide_pauseOnHover'] = $new_instance['slide_pauseOnHover'];
+		$instance['slide_controls']     = $new_instance['slide_controls'];
+		$instance['slide_loop']         = $new_instance['slide_loop'];
 
 		return $instance;
 	}
@@ -121,21 +134,37 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 	public function form( $instance ) {
 
 		$defaults = array(
-			'title'       => __( 'Featured Members', 'bp-featured-members' ),
-			'max'         => 5,
-			'avatar_size' => '',
-			'view'        => 'list',
-			'member_type' => '',
+			'title'              => __( 'Featured Members', 'bp-featured-members' ),
+			'max'                => 5,
+			'avatar_size'        => '',
+			'view'               => 'list',
+			'member_type'        => '',
+			'slide_item'         => 3,
+			'slide_slideMargin'  => 0,
+			'slide_mode'         => 'slide', // slide, fade.
+			'slide_speed'        => 400,
+			'slide_auto'         => true,
+			'slide_pauseOnHover' => false,
+			'slide_controls'     => false,
+			'slide_loop'         => true,
 		);
 
-		$instance     = wp_parse_args( (array) $instance, $defaults );
-		$title        = strip_tags( $instance['title'] );
-		$max          = strip_tags( $instance['max'] );
-		$avatar_size  = strip_tags( $instance['avatar_size'] );
-		$view         = $instance['view'];
-		$member_type  = $instance['member_type'];
-		$view_options = bp_fm_get_views_options();
-		$member_types = bp_get_member_types( array(), 'objects' );
+		$instance             = wp_parse_args( (array) $instance, $defaults );
+		$title                = strip_tags( $instance['title'] );
+		$max                  = strip_tags( $instance['max'] );
+		$avatar_size          = strip_tags( $instance['avatar_size'] );
+		$view                 = $instance['view'];
+		$member_type          = $instance['member_type'];
+		$view_options         = bp_fm_get_views_options();
+		$member_types         = bp_get_member_types( array(), 'objects' );
+		$slide_item           = strip_tags( $instance['slide_item'] );
+		$slide_slide_margin   = strip_tags( $instance['slide_slideMargin'] );
+		$slide_mode           = $instance['slide_mode'];
+		$slide_speed          = strip_tags( $instance['slide_speed'] );
+		$slide_auto           = $instance['slide_auto'];
+		$slide_pause_on_hover = $instance['slide_pauseOnHover'];
+		$slide_controls       = $instance['slide_controls'];
+		$slide_loop           = $instance['slide_loop'];
 
 		?>
 		<p>
@@ -186,6 +215,78 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 				</select>
 			</label>
 		</p>
+
+        <p>
+            <label>
+				<?php _e( 'Slide items:', 'bp-featured-members' ); ?>
+                <input id="<?php echo $this->get_field_id( 'slide_items' ); ?>" name="<?php echo $this->get_field_name( 'slide_item' ); ?>" type="text" value="<?php echo esc_attr( $slide_item ); ?>" />
+            </label>
+        </p>
+
+        <p>
+            <label>
+				<?php _e( 'Slide margin:', 'bp-featured-members' ); ?>
+                <input id="<?php echo $this->get_field_id( 'slide_slideMargin' ); ?>" name="<?php echo $this->get_field_name( 'slide_slideMargin' ); ?>" type="text" value="<?php echo esc_attr( $slide_slide_margin ); ?>" />
+            </label>
+        </p>
+
+        <p>
+            <label>
+				<?php _e( 'Slide mode', 'bp-featured-members' ); ?>
+                <select id="<?php echo $this->get_field_id( 'slide_mode' ); ?>" name="<?php echo $this->get_field_name( 'slide_mode' ); ?>">
+                    <option value="slide" <?php selected( $slide_mode, 'slide' )?>><?php _e( 'Slide', 'bp-featured-members' ); ?></option>
+                    <option value="fade" <?php selected( $slide_mode, 'fade' )?>><?php _e( 'Fade', 'bp-featured-members' ); ?></option>
+                </select>
+            </label>
+        </p>
+
+        <p>
+            <label>
+				<?php _e( 'Slide speed:', 'bp-featured-members' ); ?>
+                <input id="<?php echo $this->get_field_id( 'slide_speed' ); ?>" name="<?php echo $this->get_field_name( 'slide_speed' ); ?>" type="text" value="<?php echo esc_attr( $slide_speed ); ?>" />
+            </label>
+        </p>
+
+        <p>
+            <label>
+				<?php _e( 'Slide auto:', 'bp-featured-members' ); ?>
+                <select id="<?php echo $this->get_field_id( 'slide_auto' ); ?>" name="<?php echo $this->get_field_name( 'slide_auto' ); ?>">
+                    <option value="1" <?php selected( $slide_auto, 1 )?>><?php _e( 'True', 'bp-featured-members' ) ?></option>
+                    <option value="0" <?php selected( $slide_auto, 0 )?>><?php _e( 'False', 'bp-featured-members' ) ?></option>
+                </select>
+            </label>
+        </p>
+
+        <p>
+            <label>
+	            <?php _e( 'Slide pause Hover:', 'bp-featured-members' ); ?>
+                <select id="<?php echo $this->get_field_id( 'slide_pauseOnHover' ); ?>" name="<?php echo $this->get_field_name( 'slide_pauseOnHover' ); ?>">
+                    <option value="1" <?php selected( $slide_pause_on_hover, 1 )?>><?php _e( 'True', 'bp-featured-members' ) ?></option>
+                    <option value="0" <?php selected( $slide_pause_on_hover, 0 )?>><?php _e( 'False', 'bp-featured-members' ) ?></option>
+                </select>
+            </label>
+        </p>
+
+        <p>
+            <label>
+		        <?php _e( 'Slide controls:', 'bp-featured-members' ); ?>
+                <select id="<?php echo $this->get_field_id( 'slide_controls' ); ?>" name="<?php echo $this->get_field_name( 'slide_controls' ); ?>">
+                    <option value="1" <?php selected( $slide_controls, 1 )?>><?php _e( 'True', 'bp-featured-members' ) ?></option>
+                    <option value="0" <?php selected( $slide_controls, 0 )?>><?php _e( 'False', 'bp-featured-members' ) ?></option>
+                </select>
+            </label>
+        </p>
+
+        <p>
+            <label>
+				<?php _e( 'Slide loop:', 'bp-featured-members' ); ?>
+                <select id="<?php echo $this->get_field_id( 'slide_loop' ); ?>" name="<?php echo $this->get_field_name( 'slide_loop' ); ?>">
+                    <option value="1" <?php selected( $slide_loop, 1 )?>><?php _e( 'True', 'bp-featured-members' ) ?></option>
+                    <option value="0" <?php selected( $slide_loop, 0 )?>><?php _e( 'False', 'bp-featured-members' ) ?></option>
+                </select>
+            </label>
+        </p>
+
 		<?php
 	}
 }

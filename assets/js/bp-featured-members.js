@@ -25,7 +25,8 @@ jQuery(document).ready(function(){
     if ( typeof jq.fn.lightSlider !== 'undefined' ) {
         jq( '.featured-members-slider').each( function() {
           var $this = jq(this);
-            //read settings from element
+
+          //read settings from element
           $this.lightSlider( $this.data() );
         } );
     }

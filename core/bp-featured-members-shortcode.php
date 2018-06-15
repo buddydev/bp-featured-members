@@ -10,18 +10,18 @@ add_shortcode( 'bp-featured-members', 'bp_featured_members_shortcode' );
  */
 function bp_featured_members_shortcode( $atts, $content = '' ) {
 	$atts = shortcode_atts( array(
-		'view'               => 'list', // list, slider, default.
-		'max'                => 5,
-		'avatar_size'        => '',
-		'member_type'        => '',
-		'slide-item'         => 1,
-		'slide-slideMargin'  => 0,
-		'slide-mode'         => 'slide', // slide, fade.
-		'slide-speed'        => 400,
-		'slide-auto'         => true,
-		'slide-pauseOnHover' => false,
-		'slide-controls'     => false,
-		'slide-loop'         => true,
+		'view'                 => 'list', // list, slider, default.
+		'max'                  => 5,
+		'avatar_size'          => '',
+		'member_type'          => '',
+		'slide-item'           => 1,
+		'slide-slide-margin'   => 0,
+		'slide-mode'           => 'slide', // slide, fade.
+		'slide-speed'          => 400,
+		'slide-auto'           => true,
+		'slide-pause-on-hover' => false,
+		'slide-controls'       => false,
+		'slide-loop'           => true,
 	), $atts );
 
 	$max  = $atts['max'];

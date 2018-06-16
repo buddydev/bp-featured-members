@@ -87,6 +87,8 @@ class BP_Featured_Members {
 		add_action( 'bp_init', array( $this, 'load_text_domain' ) );
 		// css/js.
 		add_action( 'bp_enqueue_scripts', array( $this, 'load_assets' ) );
+		// load admin scripts.
+		add_action( 'admin_print_scripts-widgets.php', array( $this, 'load_admin_assets') );
 	}
 
 	/**
@@ -121,6 +123,14 @@ class BP_Featured_Members {
 		) );
 
 		wp_enqueue_script( 'bp-featured-members' );
+	}
+
+	public function load_admin_assets() {
+		wp_register_script( 'bp-featured-members-admin', $this->url . 'assets/js/bp-featured-members-admin.js', array(
+			'jquery'
+		) );
+
+		wp_enqueue_script( 'bp-featured-members-admin' );
 	}
 
 	/**

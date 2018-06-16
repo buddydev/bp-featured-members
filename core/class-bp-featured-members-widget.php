@@ -179,14 +179,14 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 		<p>
 			<label>
 				<?php _e( 'Max. number of users to show:', 'bp-featured-members' ); ?>
-				<input id="<?php echo $this->get_field_id( 'max' ); ?>" name="<?php echo $this->get_field_name( 'max' ); ?>" type="text" value="<?php echo esc_attr( $max ); ?>" />
+				<input class="tiny-text" id="<?php echo $this->get_field_id( 'max' ); ?>" name="<?php echo $this->get_field_name( 'max' ); ?>" type="text" value="<?php echo esc_attr( $max ); ?>" />
 			</label>
 		</p>
 
         <p>
             <label>
 				<?php _e( 'Avatar size:', 'bp-featured-members' ); ?>
-                <input id="<?php echo $this->get_field_id( 'avatar_size' ); ?>" name="<?php echo $this->get_field_name( 'avatar_size' ); ?>" type="text" value="<?php echo esc_attr( $avatar_size ); ?>" />
+                <input class="tiny-text" id="<?php echo $this->get_field_id( 'avatar_size' ); ?>" name="<?php echo $this->get_field_name( 'avatar_size' ); ?>" type="text" value="<?php echo esc_attr( $avatar_size ); ?>" />
             </label>
         </p>
 
@@ -208,25 +208,27 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
         <p>
 			<label>
 				<?php _e( 'Display View:', 'bp-featured-members' ); ?>
-				<select id="<?php echo $this->get_field_id( 'view' ); ?>" name="<?php echo $this->get_field_name( 'view' ); ?>">
+				<select class="bpfm-widget-admin-widget-view-options" id="<?php echo $this->get_field_id( 'view' ); ?>" name="<?php echo $this->get_field_name( 'view' ); ?>">
                     <?php foreach ( $view_options as $value => $option_name ) : ?>
 						<option value="<?php echo $value ?>" <?php selected( $view, $value ) ?>><?php echo $option_name; ?></option>
 					<?php endforeach; ?>
 				</select>
 			</label>
 		</p>
-
+        <?php $display_style = $view == 'slider' ? 'block': 'none';?>
+        <div class="bpfm-widget-admin-widget-slide-options" style="display:<?php echo $display_style;?>;">
+            <h3><?php _e( 'Slide Options', 'bp-featured-members' );?></h3>
         <p>
             <label>
 				<?php _e( 'Slide items:', 'bp-featured-members' ); ?>
-                <input id="<?php echo $this->get_field_id( 'slide_items' ); ?>" name="<?php echo $this->get_field_name( 'slide_item' ); ?>" type="text" value="<?php echo esc_attr( $slide_item ); ?>" />
+                <input class="tiny-text" id="<?php echo $this->get_field_id( 'slide_items' ); ?>" name="<?php echo $this->get_field_name( 'slide_item' ); ?>" type="text" value="<?php echo esc_attr( $slide_item ); ?>" />
             </label>
         </p>
 
         <p>
             <label>
 				<?php _e( 'Slide margin:', 'bp-featured-members' ); ?>
-                <input id="<?php echo $this->get_field_id( 'slide_slideMargin' ); ?>" name="<?php echo $this->get_field_name( 'slide_slideMargin' ); ?>" type="text" value="<?php echo esc_attr( $slide_slide_margin ); ?>" />
+                <input class="tiny-text" id="<?php echo $this->get_field_id( 'slide_slideMargin' ); ?>" name="<?php echo $this->get_field_name( 'slide_slideMargin' ); ?>" type="text" value="<?php echo esc_attr( $slide_slide_margin ); ?>" />
             </label>
         </p>
 
@@ -243,7 +245,7 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
         <p>
             <label>
 				<?php _e( 'Slide speed:', 'bp-featured-members' ); ?>
-                <input id="<?php echo $this->get_field_id( 'slide_speed' ); ?>" name="<?php echo $this->get_field_name( 'slide_speed' ); ?>" type="text" value="<?php echo esc_attr( $slide_speed ); ?>" />
+                <input class="tiny-text" id="<?php echo $this->get_field_id( 'slide_speed' ); ?>" name="<?php echo $this->get_field_name( 'slide_speed' ); ?>" type="text" value="<?php echo esc_attr( $slide_speed ); ?>" />
             </label>
         </p>
 
@@ -286,7 +288,7 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
                 </select>
             </label>
         </p>
-
+</div>
 		<?php
 	}
 }

@@ -3,7 +3,7 @@ Contributors: buddydev,raviousprime,sbrajesh
 Tags: buddypress, featured members
 Requires at least: 4.5.0
 Tested up to: 4.9.6
-Stable tag: 1.0.9
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,6 +30,8 @@ For documentation, Please see the [plugin page]( https://buddydev.com/plugins/bp
 
 Are you looking for more features for your BuddyPress site. We have got a lot of [BuddyPress plugins](https://buddydev.com/plugins/) that you may find helpful.
 
+*Note*:- The views may not work properly with Bp Nouveau template pack. We are unable to support BP Nouveau till September 2018.
+
 == Installation ==
 
 1. Visit Dashboard->Plugins->add New
@@ -48,6 +50,10 @@ For more details, Please see the plugin documentation page.
 For more screenshots, Please see [BuddyPress Featured Members Plugin](https://buddydev.com/plugins/bp-featured-members/) page.
 
 == Changelog ==
+= 1.0.9 =
+* Convert slide options to boolean.
+* Add note about Nouveau compatibility.
+
 
 = 1.0.9 =
 * Added slider options in the widget options.

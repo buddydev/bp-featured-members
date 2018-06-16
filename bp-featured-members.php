@@ -5,7 +5,7 @@
  * Plugin URI: https://buddydev.com/plugins/bp-featured-members/
  * Author: BuddyDev
  * Author URI: https://buddydev.com
- * Version: 1.0.9
+ * Version: 1.1.0
  * Text Domain: bp-featured-members
  * Domain Path: /languages
  */

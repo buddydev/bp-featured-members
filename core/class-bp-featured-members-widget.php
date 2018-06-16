@@ -5,7 +5,7 @@
  * @package bp-featured-members
  */
 
-// Exit if file access directly.
+// Exit if file accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -76,7 +76,7 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 
 		echo $args['before_widget'];
 
-		echo $args['before_title'] . esc_html( apply_filters( 'widget_title', $instance['title'] ), $instance, $this->id_base ) . $args['after_title'] ;
+		echo $args['before_title'] . esc_html( apply_filters( 'widget_title', $instance['title'] , $instance, $this->id_base ) ) . $args['after_title'] ;
 
 		?>
 

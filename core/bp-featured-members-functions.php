@@ -1,5 +1,5 @@
 <?php
-// Exit if file access directly.
+// Exit if file accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

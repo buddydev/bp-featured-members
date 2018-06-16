@@ -27,7 +27,21 @@ jQuery(document).ready(function(){
           var $this = jq(this);
 
           //read settings from element
-          $this.lightSlider( $this.data() );
+          var data = $this.data();
+
+            var boolProps = ['loop', 'autoWidth', 'useCSS', 'auto', 'pauseOnHover',
+                'keyPress', 'controls', 'rtl', 'adaptiveHeight', 'vertical',
+                'pager', 'gallery', 'enableTouch', 'enableDrag', 'freeMove'];
+
+            for ( var i = 0; i< boolProps.length; i++ ) {
+
+              if( data[ boolProps[i] ] !== undefined ) {
+                  data[ boolProps[i] ] = !! data[ boolProps[i] ];
+              }
+          }
+          console.log(data);
+
+          $this.lightSlider( data );
         } );
     }
 });

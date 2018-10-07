@@ -111,11 +111,11 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 		$instance['avatar_size'] = $avatar_size;
 		$instance['view']        = $view;
 		// not validating as admins are not supposed to be fooling around.
-		$instance['member_type']       = $member_type;
-		$instance['slide_item']        = strip_tags( $new_instance['slide_item'] );
-		$instance['slide_slideMargin'] = strip_tags( $new_instance['slide_slideMargin'] );
-		$instance['slide_mode']        = $new_instance['slide_mode']; // slide, fade.
-		$instance['slide_speed']       = strip_tags( $new_instance['slide_speed'] );
+		$instance['member_type']        = $member_type;
+		$instance['slide_item']         = strip_tags( $new_instance['slide_item'] );
+		$instance['slide_slideMargin']  = strip_tags( $new_instance['slide_slideMargin'] );
+		$instance['slide_mode']         = $new_instance['slide_mode']; // slide, fade.
+		$instance['slide_speed']        = strip_tags( $new_instance['slide_speed'] );
 		$instance['slide_auto']         = $new_instance['slide_auto'];
 		$instance['slide_pauseOnHover'] = $new_instance['slide_pauseOnHover'];
 		$instance['slide_controls']     = $new_instance['slide_controls'];

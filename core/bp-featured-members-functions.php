@@ -69,7 +69,6 @@ function bp_fm_load_members_list( $view_type, $context = 'widget', $load = true 
 	} else {
 		return $located;
 	}
-
 }
 
 /**
@@ -83,8 +82,8 @@ function bp_fm_get_avatar_args() {
 	$avatar_type = bp_featured_members()->get( 'avatar_type' );
 
 	return array(
-		'type' => $avatar_type,
-		'width' => $avatar_size,
+		'type'   => $avatar_type,
+		'width'  => $avatar_size,
 		'height' => $avatar_size,
 	);
 }

@@ -5,7 +5,7 @@
  * Plugin URI: https://buddydev.com/plugins/bp-featured-members/
  * Author: BuddyDev
  * Author URI: https://buddydev.com
- * Version: 1.1.0
+ * Version: 1.1.1
  * Text Domain: bp-featured-members
  * Domain Path: /languages
  */
@@ -88,7 +88,7 @@ class BP_Featured_Members {
 		// css/js.
 		add_action( 'bp_enqueue_scripts', array( $this, 'load_assets' ) );
 		// load admin scripts.
-		add_action( 'admin_print_scripts-widgets.php', array( $this, 'load_admin_assets') );
+		add_action( 'admin_print_scripts-widgets.php', array( $this, 'load_admin_assets' ) );
 	}
 
 	/**
@@ -118,17 +118,16 @@ class BP_Featured_Members {
 		wp_register_style( 'lightslider', $this->url . 'assets/css/lightslider.min.css' );
 		wp_register_script( 'lightslider', $this->url . 'assets/js/lightslider.min.js', array( 'jquery' ) );
 
-		wp_register_script( 'bp-featured-members', $this->url . 'assets/js/bp-featured-members.js', array(
-			'jquery'
-		) );
+		wp_register_script( 'bp-featured-members', $this->url . 'assets/js/bp-featured-members.js', array( 'jquery' ) );
 
 		wp_enqueue_script( 'bp-featured-members' );
 	}
 
+	/**
+	 * Load admin assets.
+	 */
 	public function load_admin_assets() {
-		wp_register_script( 'bp-featured-members-admin', $this->url . 'assets/js/bp-featured-members-admin.js', array(
-			'jquery'
-		) );
+		wp_register_script( 'bp-featured-members-admin', $this->url . 'assets/js/bp-featured-members-admin.js', array( 'jquery' ) );
 
 		wp_enqueue_script( 'bp-featured-members-admin' );
 	}

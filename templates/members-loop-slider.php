@@ -2,11 +2,15 @@
 /**
  * Members list Slider template
  */
-$view = bp_featured_members()->get( 'view' );
+
+// Do not allow direct access over web.
+defined( 'ABSPATH' ) || exit;
+
+$view     = bp_featured_members()->get( 'view' );
 $settings = bp_featured_members()->get( 'slider-settings' );
 ?>
-<?php if ( bp_has_members( bp_ajax_querystring( 'members' ) . '&scope=featured') ) : ?>
-<ul class="item-list featured-members-list featured-members-<?php echo $view; ?>" <?php bp_members_slider_data_attributes( $settings );?>">
+<?php if ( bp_has_members( bp_ajax_querystring( 'members' ) . '&scope=featured' ) ) : ?>
+<ul class="item-list featured-members-list featured-members-<?php echo esc_attr( $view ); ?>" <?php bp_members_slider_data_attributes( $settings );?>">
 
 <?php while ( bp_members() ) : bp_the_member(); ?>
 	<li class="featured-member-item ">
@@ -30,7 +34,7 @@ $settings = bp_featured_members()->get( 'slider-settings' );
 	</li>
 <?php endwhile; ?>
 </ul>
-<?php bp_featured_members()->load_slider(); ?>
+    <?php bp_featured_members()->load_slider(); ?>
 <?php else : ?>
 
 	<div id="message" class="info">
@@ -38,4 +42,3 @@ $settings = bp_featured_members()->get( 'slider-settings' );
 	</div>
 
 <?php endif; ?>
-

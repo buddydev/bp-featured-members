@@ -9,6 +9,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class BP_Featured_Members_Ajax_Action_Handler {
 
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
 		add_action( 'wp_ajax_bp_process_featured_members_status', array( $this, 'handle' ) );
 	}
@@ -23,7 +26,7 @@ class BP_Featured_Members_Ajax_Action_Handler {
 		check_ajax_referer( 'bp-featured-members-toggle-' . $user_id );
 
 		if ( ! bp_featured_members()->current_user_can_toggle_member_status() ) {
-			wp_send_json_error( __( "You don't have permission", 'bp-featured-members' ) );
+			wp_send_json_error( __( "You don't have permission.", 'bp-featured-members' ) );
 		}
 
 		$fm = bp_featured_members();

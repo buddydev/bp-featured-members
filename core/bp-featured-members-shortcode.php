@@ -24,9 +24,9 @@ function bp_featured_members_shortcode( $atts, $content = '' ) {
 		'slide-loop'           => true,
 	), $atts );
 
-	$max  = $atts['max'];
+	$max         = $atts['max'];
 	$avatar_size = $atts['avatar_size'];
-	$view = $atts['view'];
+	$view        = $atts['view'];
 
 	bp_featured_members()->set( 'max', $max );
 	bp_featured_members()->set( 'avatar_size', $avatar_size );

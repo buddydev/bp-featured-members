@@ -31,7 +31,7 @@ class BP_Featured_Members_Template_Helper {
 
 		$is_featured = get_user_meta( $member_id, '_is_featured', true );
 
-		$button_label = $is_featured ? 'Remove Featured' : 'Set Featured';
+		$button_label = $is_featured ? __( 'Remove Featured', 'bp-featured-members' ) : __( 'Set Featured', 'bp-featured-members' );
 
 		?>
 		<div class="generic-button bp-featured-members-button">

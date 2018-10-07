@@ -2,10 +2,14 @@
 /**
  * Members list template
  */
+
+// Do not allow direct access over web.
+defined( 'ABSPATH' ) || exit;
+
 $view = bp_featured_members()->get( 'view' );
 ?>
-<?php if ( bp_has_members( bp_ajax_querystring( 'members' ) . '&scope=featured') ) : ?>
-	<ul class="item-list featured-members-list featured-members-<?php echo $view; ?>" >
+<?php if ( bp_has_members( bp_ajax_querystring( 'members' ) . '&scope=featured' ) ) : ?>
+	<ul class="item-list featured-members-list featured-members-<?php echo esc_attr( $view ); ?>" >
 	<?php while ( bp_members() ) : bp_the_member(); ?>
 		<li class="featured-member-item ">
 			<div class="item-avatar">

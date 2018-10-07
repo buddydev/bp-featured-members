@@ -1,5 +1,12 @@
 <?php
 /**
+ * List filtering.
+ */
+
+// Do not allow direct access over web.
+defined( 'ABSPATH' ) || exit;
+
+/**
  * Filter bp_has_members() transparently for listing our members
  *
  * @param array $args args array.

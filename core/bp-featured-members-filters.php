@@ -32,6 +32,9 @@ function bp_featured_members_filter_members_list( $args ) {
 		if ( $member_type ) {
 			$args['member_type'] = $member_type;
 		}
+
+		// In case admin marked newly registered user as featured which has empty last login detail.
+		$args['type'] = 'alphabetical';
 	}
 
 	return $args;

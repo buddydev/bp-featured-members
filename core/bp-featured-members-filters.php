@@ -22,6 +22,8 @@ function bp_featured_members_filter_members_list( $args ) {
 
 		// which other params are we allowing?
 		$max         = bp_featured_members()->get( 'max' );
+		$enable_type = bp_featured_members()->get( 'enable_type' );
+		$type        = bp_featured_members()->get( 'type' );
 		$member_type = bp_featured_members()->get( 'member_type' );
 
 		if ( $max ) {
@@ -34,8 +36,10 @@ function bp_featured_members_filter_members_list( $args ) {
 		}
 
 		// In case admin marked newly registered user as featured which has empty last login detail.
-		if ( empty( $args['enable_type'] ) ) { // if type enforcement is not enabled, use alphabetical.
+		if ( empty( $enable_type ) ) { // if type enforcement is not enabled, use alphabetical.
 			$args['type'] = 'alphabetical';
+		} else {
+			$args['type'] = $type;
 		}
 	}
 

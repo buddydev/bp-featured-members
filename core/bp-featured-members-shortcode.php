@@ -12,6 +12,8 @@ function bp_featured_members_shortcode( $atts, $content = '' ) {
 	$atts = shortcode_atts( array(
 		'view'                 => 'list', // list, slider, default.
 		'max'                  => 5,
+		'enable_type'          => 0, // active, newest, random, online & alphabetical.
+		'type'                 => 'active', // active, newest, random, online & alphabetical.
 		'avatar_size'          => '',
 		'member_type'          => '',
 		'slide-item'           => 1,
@@ -25,10 +27,20 @@ function bp_featured_members_shortcode( $atts, $content = '' ) {
 	), $atts );
 
 	$max         = $atts['max'];
+	$enable_type = $atts['enable_type'] ? 1 : 0;
+	$type        = in_array( $atts['type'], array(
+		'active',
+		'newest',
+		'random',
+		'online',
+		'alphabetical'
+	) ) ? $atts['type'] : 'active';
 	$avatar_size = $atts['avatar_size'];
 	$view        = $atts['view'];
 
 	bp_featured_members()->set( 'max', $max );
+	bp_featured_members()->set( 'enable_type', $enable_type );
+	bp_featured_members()->set( 'type', $type );
 	bp_featured_members()->set( 'avatar_size', $avatar_size );
 	bp_featured_members()->set( 'view', $view );
 	bp_featured_members()->set( 'context', 'shortcode' );

@@ -50,6 +50,9 @@ For more details, Please see the plugin documentation page.
 For more screenshots, Please see [BuddyPress Featured Members Plugin](https://buddydev.com/plugins/bp-featured-members/) page.
 
 == Changelog ==
+= 1.1.4 =
+* Member args type attribute support in shortcode as well as widget.
+
 = 1.1.3 =
 * Minor code enhance to allow type based filtering if the code is used manually.
 

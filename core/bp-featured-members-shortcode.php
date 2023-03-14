@@ -28,13 +28,7 @@ function bp_featured_members_shortcode( $atts, $content = '' ) {
 
 	$max         = $atts['max'];
 	$enable_type = $atts['enable_type'] ? 1 : 0;
-	$type        = in_array( $atts['type'], array(
-		'active',
-		'newest',
-		'random',
-		'online',
-		'alphabetical'
-	) ) ? $atts['type'] : 'active';
+	$type        = array_key_exists( $atts['type'], bp_fm_get_member_args_type_options() ) ? $atts['type'] : 'active';
 	$avatar_size = $atts['avatar_size'];
 	$view        = $atts['view'];
 

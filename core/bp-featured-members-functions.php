@@ -87,3 +87,20 @@ function bp_fm_get_avatar_args() {
 		'height' => $avatar_size,
 	);
 }
+
+/**
+ * Retrieves member args type options
+ *
+ * @return array
+ */
+function bp_fm_get_member_args_type_options() {
+	$options = array(
+		'active'       => __( 'Active', 'bp-featured-members' ),
+		'newest'       => __( 'Newest', 'bp-featured-members' ),
+		'popular'      => __( 'Popular', 'bp-featured-members' ),
+		'online'       => __( 'Online', 'bp-featured-members' ),
+		'alphabetical' => __( 'Alphabetical', 'bp-featured-members' ),
+	);
+
+	return $options;
+}

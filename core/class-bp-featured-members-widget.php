@@ -109,7 +109,7 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 		$instance                = $old_instance;
 		$instance['title']       = strip_tags( $new_instance['title'] );
 		$instance['max']         = strip_tags( $new_instance['max'] );
-		$instance['type']        = array_key_exists( $new_instance['type'], bp_fm_get_member_args_type_options() ) ? sanitize_text_field( $new_instance['type'] ) : 'active';
+		$instance['type']        = array_key_exists( $new_instance['type'], bp_fm_get_member_args_type_options() ) ? sanitize_text_field( $new_instance['type'] ) : '';
 		$instance['avatar_size'] = $avatar_size;
 		$instance['view']        = $view;
 		// not validating as admins are not supposed to be fooling around.
@@ -138,7 +138,7 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 		$defaults = array(
 			'title'              => __( 'Featured Members', 'bp-featured-members' ),
 			'max'                => 5,
-            'type'               => 'active',
+            'type'               => '',
 			'avatar_size'        => '',
 			'view'               => 'list',
 			'member_type'        => '',
@@ -156,7 +156,7 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 		$title                = strip_tags( $instance['title'] );
 		$max                  = strip_tags( $instance['max'] );
 		$type                 = sanitize_text_field( $instance['type'] );
-		$type                 = array_key_exists( $type, bp_fm_get_member_args_type_options() ) ? $type : 'active';
+		$type                 = array_key_exists( $type, bp_fm_get_member_args_type_options() ) ? $type : '';
 		$avatar_size          = strip_tags( $instance['avatar_size'] );
 		$view                 = $instance['view'];
 		$member_type          = $instance['member_type'];
@@ -192,6 +192,7 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
             <label>
 				<?php _e( 'Type', 'bp-featured-members' ); ?>
                 <select id="<?php echo $this->get_field_id( 'type' ); ?>" name="<?php echo $this->get_field_name( 'type' ); ?>">
+                    <option value=""><?php esc_html_e( 'Select Type', 'bp-featured-members' ); ?></option>
                     <?php foreach ( bp_fm_get_member_args_type_options() as $option => $label ) : ?>
                     <option value="<?php echo esc_attr( $option ); ?>" <?php selected( $type, $option ) ?>><?php echo esc_html( $label ); ?></option>
                     <?php endforeach; ?>

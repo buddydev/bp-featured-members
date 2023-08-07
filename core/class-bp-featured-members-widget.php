@@ -38,26 +38,38 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 	 */
 	public function widget( $args, $instance ) {
 
-		$avatar_size = isset( $instance['avatar_size'] ) ? $instance['avatar_size'] : '';
+		$avatar_size = isset( $instance['avatar_size'] ) ? absint( $instance['avatar_size'] ) : '';
 		$member_type = isset( $instance['member_type'] ) ? $instance['member_type'] : '';
+		$max         = isset( $instance['max'] ) ? absint( $instance['max'] ) : 5;
+		$type        = isset( $instance['type'] ) ? $instance['type'] : '';
+		$view        = isset( $instance['view'] ) ? $instance['view'] : 'list';
 
-		bp_featured_members()->set( 'max', $instance['max'] );
-		bp_featured_members()->set( 'type', $instance['type'] );
+		bp_featured_members()->set( 'max', $max );
+		bp_featured_members()->set( 'type', $type );
 		bp_featured_members()->set( 'avatar_size', $avatar_size );
-		bp_featured_members()->set( 'view', $instance['view'] );
+		bp_featured_members()->set( 'view', $view );
 		bp_featured_members()->set( 'context', 'widget' );
 		bp_featured_members()->set( 'member_type', $member_type );
 
-		$slide_auto           = ( $instance['slide_auto'] ) ? true : false;
-		$slide_pause_on_hover = ( $instance['slide_pauseOnHover'] ) ? true : false;
-		$slide_controls       = ( $instance['slide_controls'] ) ? true : false;
-		$slide_loop           = ( $instance['slide_loop'] ) ? true : false;
+		$slide_auto           = empty( $instance['slide_auto'] ) ? false : true;
+		$slide_pause_on_hover = empty( $instance['slide_pauseOnHover'] ) ? false : true;
+		$slide_controls       = empty( $instance['slide_controls'] ) ? false : true;
+		$slide_loop           = empty( $instance['slide_loop'] ) ? false : true;
+		$slide_items          = isset( $instance['slide_item'] ) ? absint( $instance['slide_item'] ) : 3;
+		$slide_margin         = isset( $instance['slide_slideMargin'] ) ? absint( $instance['slide_slideMargin'] ) : 0;
+
+		$slide_mode = isset( $instance['slide_mode'] ) && in_array( $instance['slide_mode'], array(
+			'slide',
+			'fade'
+		) ) ? $instance['slide_mode'] : 'slide';
+
+		$slide_speed = empty( $instance['slide_speed'] ) ? absint( $instance['slide_speed'] ) : 400;
 
 		$slider_settings = array(
-			'item'           => $instance['slide_item'],
-			'slide-margin'   => $instance['slide_slideMargin'],
-			'mode'           => $instance['slide_mode'], // slide.
-			'speed'          => $instance['slide_speed'],
+			'item'           => $slide_items,
+			'slide-margin'   => $slide_margin,
+			'mode'           => $slide_mode, // slide.
+			'speed'          => $slide_speed,
 			'auto'           => $slide_auto,
 			'pause-on-hover' => $slide_pause_on_hover,
 			'controls'       => $slide_controls,
@@ -75,14 +87,17 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 		// log loop start.
 		bp_featured_members()->start_loop();
 
+		$title = empty( $instance['title'] ) ? '' : $instance['title'];
+		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
+
 		echo $args['before_widget'];
 
-		echo $args['before_title'] . esc_html( apply_filters( 'widget_title', $instance['title'] , $instance, $this->id_base ) ) . $args['after_title'] ;
+		echo $args['before_title'] . esc_html( $title ) . $args['after_title'];
 
 		?>
 
 		<div class="bp-featured-members-widget">
-			<?php bp_fm_load_members_list( $instance['view'], 'widget' ); ?>
+			<?php bp_fm_load_members_list( $view, 'widget' ); ?>
 		</div>
 
 		<?php echo $args['after_widget']; ?>
@@ -101,23 +116,23 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 	 */
 	public function update( $new_instance, $old_instance ) {
 
-		$avatar_size = isset( $new_instance['avatar_size'] ) ? strip_tags( $new_instance['avatar_size'] ) : '';
+		$avatar_size = isset( $new_instance['avatar_size'] ) ? absint( $new_instance['avatar_size'] ) : '';
 		$member_type = isset( $new_instance['member_type'] ) ? $new_instance['member_type'] : '';
 
 		$view_options            = bp_fm_get_views_options();
 		$view                    = key_exists( $new_instance['view'], $view_options ) ? $new_instance['view'] : 'list';
 		$instance                = $old_instance;
 		$instance['title']       = strip_tags( $new_instance['title'] );
-		$instance['max']         = strip_tags( $new_instance['max'] );
+		$instance['max']         = absint( $new_instance['max'] );
 		$instance['type']        = array_key_exists( $new_instance['type'], bp_fm_get_member_args_type_options() ) ? sanitize_text_field( $new_instance['type'] ) : '';
 		$instance['avatar_size'] = $avatar_size;
 		$instance['view']        = $view;
 		// not validating as admins are not supposed to be fooling around.
 		$instance['member_type']        = $member_type;
-		$instance['slide_item']         = strip_tags( $new_instance['slide_item'] );
-		$instance['slide_slideMargin']  = strip_tags( $new_instance['slide_slideMargin'] );
+		$instance['slide_item']         = absint( $new_instance['slide_item'] );
+		$instance['slide_slideMargin']  = absint( $new_instance['slide_slideMargin'] );
 		$instance['slide_mode']         = $new_instance['slide_mode']; // slide, fade.
-		$instance['slide_speed']        = strip_tags( $new_instance['slide_speed'] );
+		$instance['slide_speed']        = absint( $new_instance['slide_speed'] );
 		$instance['slide_auto']         = $new_instance['slide_auto'];
 		$instance['slide_pauseOnHover'] = $new_instance['slide_pauseOnHover'];
 		$instance['slide_controls']     = $new_instance['slide_controls'];
@@ -138,7 +153,7 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 		$defaults = array(
 			'title'              => __( 'Featured Members', 'bp-featured-members' ),
 			'max'                => 5,
-            'type'               => '',
+			'type'               => '',
 			'avatar_size'        => '',
 			'view'               => 'list',
 			'member_type'        => '',
@@ -154,18 +169,18 @@ class BP_Featured_Members_List_Widget extends WP_Widget {
 
 		$instance             = wp_parse_args( (array) $instance, $defaults );
 		$title                = strip_tags( $instance['title'] );
-		$max                  = strip_tags( $instance['max'] );
+		$max                  = absint( $instance['max'] );
 		$type                 = sanitize_text_field( $instance['type'] );
 		$type                 = array_key_exists( $type, bp_fm_get_member_args_type_options() ) ? $type : '';
-		$avatar_size          = strip_tags( $instance['avatar_size'] );
+		$avatar_size          = absint( $instance['avatar_size'] );
 		$view                 = $instance['view'];
 		$member_type          = $instance['member_type'];
 		$view_options         = bp_fm_get_views_options();
 		$member_types         = bp_get_member_types( array(), 'objects' );
-		$slide_item           = strip_tags( $instance['slide_item'] );
-		$slide_slide_margin   = strip_tags( $instance['slide_slideMargin'] );
+		$slide_item           = absint( $instance['slide_item'] );
+		$slide_slide_margin   = absint( $instance['slide_slideMargin'] );
 		$slide_mode           = $instance['slide_mode'];
-		$slide_speed          = strip_tags( $instance['slide_speed'] );
+		$slide_speed          = absint( $instance['slide_speed'] );
 		$slide_auto           = $instance['slide_auto'];
 		$slide_pause_on_hover = $instance['slide_pauseOnHover'];
 		$slide_controls       = $instance['slide_controls'];
@@ -318,3 +333,4 @@ function bp_featured_members_register_widgets() {
 }
 
 add_action( 'bp_widgets_init', 'bp_featured_members_register_widgets' );
+

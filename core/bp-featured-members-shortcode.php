@@ -1,4 +1,15 @@
 <?php
+/**
+ * Plugin widget to list featured members using shortcode
+ *
+ * @package bp-featured-members
+ */
+
+// Exit if accessed directly over web.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 add_shortcode( 'bp-featured-members', 'bp_featured_members_shortcode' );
 /**
  * Featured member as shortcde.

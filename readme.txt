@@ -2,8 +2,8 @@
 Contributors: buddydev,raviousprime,sbrajesh
 Tags: buddypress, featured members
 Requires at least: 4.5.0
-Tested up to: 6.0.2
-Stable tag: 1.1.4
+Tested up to: 6.3
+Stable tag: 1.1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,9 @@ For more details, Please see the plugin documentation page.
 For more screenshots, Please see [BuddyPress Featured Members Plugin](https://buddydev.com/plugins/bp-featured-members/) page.
 
 == Changelog ==
+= 1.1.5 =
+* Fix notices
+
 = 1.1.4 =
 * Member args type attribute support in shortcode as well as widget.
 
